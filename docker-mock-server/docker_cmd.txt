@@ -2,6 +2,8 @@ start docker -> serv address 192.168.99.100
 
 go to docker-mock-server
 docker build -t mockmock-serv .
-docker run -p 2525:2525 mockmock-serv
+docker run -p 2525:2525 -p 8282:8282 mockmock-serv
 
-depuis host : telnet 192.168.99.100 2525
+depuis host : 
+	SMTP : telnet 192.168.99.100 2525
+	HTTP MockMock : 192.168.99.100:8282

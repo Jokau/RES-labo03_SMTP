@@ -6,4 +6,4 @@ ADD src /opt/src
 
 WORKDIR /opt/src
 
-ENTRYPOINT ["java","-jar","MockMock.jar", "-p", "2525"]
+ENTRYPOINT ["java","-jar","MockMock.jar", "-p", "2525", "-h", "8282"]
