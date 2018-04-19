@@ -71,7 +71,8 @@ public class Mail {
         Scanner scanner = new Scanner(message);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            if(line.contains("Subject: ")) {
+            String pattern = "^Subject:.*";
+            if(line.matches(pattern)) {
                 line = "Subject: =?utf-8?B?" + Base64.getEncoder().encodeToString(
                         line.replace("Subject: ", "").getBytes()) + "?=";
             }
