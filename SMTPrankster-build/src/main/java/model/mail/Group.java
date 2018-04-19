@@ -30,7 +30,7 @@ public class Group {
      * @param receivers the Persons whose e-mail addresses are used as receivers
      */
     public Group(@NotNull Person sender,@NotNull List<Person> receivers) throws NotEnoughVictimsException {
-        if (receivers.size() < MIN_NB_OF_VICTIMS) {
+        if (receivers.size() < MIN_NB_OF_VICTIMS-1) {
             throw new NotEnoughVictimsException("Each Group should contain at least "
                     + MIN_NB_OF_VICTIMS + " found : " +  receivers.size());
         }
@@ -44,7 +44,7 @@ public class Group {
      * @param receivers the Persons whose e-mail addresses are used as receivers
      */
     public Group(@NotNull Person sender,@NotNull Person... receivers) throws NotEnoughVictimsException {
-        if (receivers.length < MIN_NB_OF_VICTIMS) {
+        if (receivers.length < MIN_NB_OF_VICTIMS-1) {
             throw new NotEnoughVictimsException("Each Group should contain at least "
                     + MIN_NB_OF_VICTIMS + " found : " +  receivers.length);
         }

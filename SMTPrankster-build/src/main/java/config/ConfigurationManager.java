@@ -19,7 +19,6 @@ public class ConfigurationManager implements  IConfigurationManager{
     private final static String PROP_SERVER_ADDRESS = "smtpServerAddress";
     private final static String PROP_PORT_NUMBER = "smtpPortNumber";
     private final static String PROP_NB_GROUPS = "numberOfGroups";
-    private final static String PROP_MIN_GROUP_SIZE = "minimumGroupSize";
     private final static String VICTIMS_FILE = ".\\config\\victims.utf8";
     private final static String MESSAGES_FILE = ".\\config\\messages.utf8";
     private final static String MESSAGE_SEPARATOR = "===";
@@ -31,7 +30,6 @@ public class ConfigurationManager implements  IConfigurationManager{
     private String smtpServerAddress;
     private int smtpPortNumber;
     private int numberOfGroups;
-    private int minimumGroupSize;
 
     //The list of availaible victims
     private ArrayList<Person> victims;
@@ -62,6 +60,10 @@ public class ConfigurationManager implements  IConfigurationManager{
     public int getSmtpPortNumber() {
         return smtpPortNumber;
     }
+    public int getNumberOfGroups() {
+
+        return numberOfGroups;
+    }
 
     /**
      * Loads the properties found in the file provided
@@ -79,7 +81,6 @@ public class ConfigurationManager implements  IConfigurationManager{
             smtpServerAddress = properties.getProperty(PROP_SERVER_ADDRESS);
             smtpPortNumber    = Integer.parseInt(properties.getProperty(PROP_PORT_NUMBER));
             numberOfGroups    = Integer.parseInt(properties.getProperty(PROP_NB_GROUPS));
-            minimumGroupSize  = Integer.parseInt(properties.getProperty(PROP_MIN_GROUP_SIZE));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -135,7 +136,7 @@ public class ConfigurationManager implements  IConfigurationManager{
                     messages.add(message);
                     message = "";
                 } else {
-                    message += lineRead;
+                    message += lineRead + "\r\n";
                 }
             }
 

@@ -52,25 +52,25 @@ public class SmtpClient implements ISmtpClient {
         String smtpData = "DATA";
         String data = mail.getContent();
 
-
         writer.println(smtpFrom);
         writer.flush();
-        System.out.println(reader.readLine());
+        reader.readLine();
 
         writer.println(smtpTo);
         writer.flush();
-        System.out.println(reader.readLine());
+        reader.readLine();
 
         writer.println(smtpData);
         writer.flush();
-        System.out.println(reader.readLine());
+        reader.readLine();
 
         writer.println(data);
         writer.flush();
+
         writer.println(".");
         writer.flush();
 
-        System.out.println(reader.readLine());
+        reader.readLine();
 
     }
 

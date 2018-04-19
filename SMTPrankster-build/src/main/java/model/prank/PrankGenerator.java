@@ -16,19 +16,28 @@ import java.util.List;
 public class PrankGenerator {
     private ConfigurationManager confManager;
     private ArrayList<Group> groups;
+    private ArrayList<Prank> pranks;
 
 
     public PrankGenerator() throws NotEnoughVictimsException {
         confManager = ConfigurationManager.getConfigManager();
-        int nbGroups = 5; //TODO confManager.getNbOfGroups();
-        this.groups = createGroups(nbGroups);
-        //TODO assign a Prank to each group
-        //TODO
+        int nbGroups = confManager.getNumberOfGroups();
+        groups = createGroups(nbGroups);
+        pranks = assignMessageToGroups();
+    }
+
+    private ArrayList<Prank> assignMessageToGroups() {
+        ArrayList<Prank> pranks = new ArrayList<Prank>();
+        ArrayList<String> messages = confManager.getMessages();
+        for(int i = 0; i < groups.size(); ++i) {
+            pranks.add(new Prank(groups.get(i).getSender(),
+                       groups.get(i).getReceivers(), messages.get(i % messages.size())));
+        }
+        return pranks;
     }
 
     public ArrayList<Prank> getPranks() {
-        //TODO
-        return null;
+        return pranks;
     }
 
     /**
