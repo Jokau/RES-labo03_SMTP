@@ -26,6 +26,10 @@ public class PrankGenerator {
         pranks = assignMessageToGroups();
     }
 
+    /**
+     * Creates pranks by assigning a message to each groups
+     * @return The list of pranks
+     */
     private ArrayList<Prank> assignMessageToGroups() {
         ArrayList<Prank> pranks = new ArrayList<Prank>();
         ArrayList<String> messages = confManager.getMessages();

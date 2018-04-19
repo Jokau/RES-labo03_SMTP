@@ -6,7 +6,7 @@ import model.mail.Person;
 import java.util.ArrayList;
 
 /**
- * Interface permettant d'obtenir les messages ainsi que les victimes disponible
+ * Provides the required functionalities for a configuration manager.
  */
 public interface IConfigurationManager {
 

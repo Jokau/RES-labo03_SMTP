@@ -30,20 +30,16 @@ public class SmtpClient implements ISmtpClient {
         writer = new PrintWriter(new OutputStreamWriter(os));
 
         String rcv = reader.readLine();
-        System.out.println(rcv);
 
         writer.println("EHLO local");
         writer.flush();
 
-        while( (rcv = reader.readLine()).charAt(3) != ' ' ) {
-            System.out.println(rcv);
-        }
-        System.out.println(rcv);
+        while( (rcv = reader.readLine()).charAt(3) != ' ' ) ;
     }
 
     /**
-     * Send a mail if a session is active
-     * @param mail
+     * Sends a mail using the SMTP protocol with the connection to the SMTP server
+     * @param mail the mail to send
      */
     public void sendMail(Mail mail) throws IOException{
 
@@ -74,6 +70,9 @@ public class SmtpClient implements ISmtpClient {
 
     }
 
+    /**
+     * Close the connection to the server
+     */
     public void close() {
 
         if(writer != null){

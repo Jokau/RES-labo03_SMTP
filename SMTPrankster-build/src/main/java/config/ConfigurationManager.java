@@ -54,17 +54,6 @@ public class ConfigurationManager implements  IConfigurationManager{
         loadProperties(PROP_FILE);
     }
 
-    public String getSmtpServerAddress() {
-        return smtpServerAddress;
-    }
-    public int getSmtpPortNumber() {
-        return smtpPortNumber;
-    }
-    public int getNumberOfGroups() {
-
-        return numberOfGroups;
-    }
-
     /**
      * Loads the properties found in the file provided
      * @param filename the file to load containing the properties
@@ -95,6 +84,10 @@ public class ConfigurationManager implements  IConfigurationManager{
         }
     }
 
+    /**
+     * Loads the victims contained in a file
+     * @param filename the name of the file containing the victims to load
+     */
     private void loadVictims(String filename) {
         victims = new ArrayList<Person>();
         FileInputStream fis = null;
@@ -120,6 +113,10 @@ public class ConfigurationManager implements  IConfigurationManager{
         }
     }
 
+    /**
+     * Loads the messages contained in a file
+     * @param filename the name of the file containing the messages to load
+     */
     private void loadMessages(String filename) {
         messages = new ArrayList<String>();
         FileInputStream fis = null;
@@ -129,13 +126,14 @@ public class ConfigurationManager implements  IConfigurationManager{
             BufferedReader is = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
 
             String lineRead = "";
-            String message = "";
+            StringBuilder message = new StringBuilder();
             while( (lineRead = is.readLine()) != null) {
                 if(lineRead.equals(MESSAGE_SEPARATOR)) {
-                    messages.add(message);
-                    message = "";
+                    message.delete(message.length()-2, message.length());
+                    messages.add(message.toString());
+                    message = new StringBuilder();
                 } else {
-                    message += lineRead + "\r\n";
+                    message.append(lineRead + "\r\n");
                 }
             }
 
@@ -158,6 +156,18 @@ public class ConfigurationManager implements  IConfigurationManager{
 
     public ArrayList<String> getMessages() {
         return messages;
+    }
+
+    public String getSmtpServerAddress() {
+        return smtpServerAddress;
+    }
+
+    public int getSmtpPortNumber() {
+        return smtpPortNumber;
+    }
+
+    public int getNumberOfGroups() {
+        return numberOfGroups;
     }
 
 }
