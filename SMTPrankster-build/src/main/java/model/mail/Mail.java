@@ -55,10 +55,8 @@ public class Mail {
         // to
         strBuilder.append("To: ");
         strBuilder.append(receiver.getEmailAddress() + "\n");
-
-        // subject
+        // subject and body
         strBuilder.append(message);
         content = strBuilder.toString();
-
     }
 }
