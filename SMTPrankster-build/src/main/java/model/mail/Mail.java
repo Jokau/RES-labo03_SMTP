@@ -75,7 +75,6 @@ public class Mail {
                 line = "Subject: =?utf-8?B?" + Base64.getEncoder().encodeToString(
                         line.replace("Subject: ", "").getBytes()) + "?=";
             }
-            System.out.println(line);
             strBuilder.append(line);
             if(scanner.hasNextLine()) {
                 strBuilder.append("\r\n");
