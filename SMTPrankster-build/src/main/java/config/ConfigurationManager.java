@@ -1,12 +1,12 @@
 /**
- * Loads all the properties, availaible victims' e-mail address and availaible messages from configurations files.
+ * Loads all the properties, availaible victims' e-mail address and availaible mail from configurations files.
  *
  * @author Joël Kaufmann (Jokau), Loïc Schürch (loic-schurch)
  */
 
 package config;
 
-import model.mail.Message;
+import model.mail.Mail;
 import model.mail.Person;
 
 import java.io.*;
@@ -21,7 +21,7 @@ public class ConfigurationManager implements  IConfigurationManager{
     private final static String PROP_NB_GROUPS = "numberOfGroups";
     private final static String PROP_MIN_GROUP_SIZE = "minimumGroupSize";
     private final static String VICTIMS_FILE = "victims.utf8";
-    private final static String MESSAGES_FILE = "messages.utf8";
+    private final static String MESSAGES_FILE = "mail.utf8";
 
     //The properties to load
     private String smtpServerAddress;
@@ -32,8 +32,8 @@ public class ConfigurationManager implements  IConfigurationManager{
     //The list of availaible victims
     private ArrayList<Person> victims;
 
-    //The list of availaible messages to send
-    private ArrayList<Message> messages;
+    //The list of availaible mail to send
+    private ArrayList<Mail> mail;
 
     public ConfigurationManager() {
         loadVictims(PROP_FILE);
@@ -98,12 +98,12 @@ public class ConfigurationManager implements  IConfigurationManager{
     }
 
     private void loadMessages(String filename) {
-        messages = new ArrayList<Message>();
+        mail = new ArrayList<Mail>();
         FileInputStream fis = null;
         try {
             fis =  new FileInputStream(filename);
 
-            //TODO: lire tous les messages qui sont séparé par un separateur, récupérer les subect, cc, etc...
+            //TODO: lire tous les mail qui sont séparé par un separateur, récupérer les subect, cc, etc...
 
         } catch(IOException e) {
             e.printStackTrace();
@@ -122,8 +122,8 @@ public class ConfigurationManager implements  IConfigurationManager{
         return victims;
     }
 
-    public ArrayList<Message> getMessages() {
-        return messages;
+    public ArrayList<Mail> getMail() {
+        return mail;
     }
 
 }

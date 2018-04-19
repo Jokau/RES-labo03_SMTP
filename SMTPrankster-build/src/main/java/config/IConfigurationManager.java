@@ -1,6 +1,6 @@
 package config;
 
-import model.mail.Message;
+import model.mail.Mail;
 import model.mail.Person;
 
 import java.util.ArrayList;
@@ -12,5 +12,5 @@ public interface IConfigurationManager {
 
     public ArrayList<Person> getVictims();
 
-    public ArrayList<Message> getMessages();
+    public ArrayList<Mail> getMail();
 }
