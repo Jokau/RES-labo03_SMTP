@@ -1,5 +1,7 @@
 package model.prank;
 
+import java.util.ArrayList;
+
 /**
  * Class that sets Pranks to Groups
  *
@@ -12,6 +14,10 @@ public class PrankGenerator {
         //TODO create the exact number of groups
         //TODO put Person in groups (at random?)
         //TODO assign a Prank to each group
-        //TODO for each goup send mails
+        //TODO
+    }
+
+    public ArrayList<Prank> getPranks() {
+        //TODO
     }
 }

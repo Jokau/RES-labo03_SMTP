@@ -22,6 +22,7 @@ public class ConfigurationManager implements  IConfigurationManager{
     private final static String PROP_MIN_GROUP_SIZE = "minimumGroupSize";
     private final static String VICTIMS_FILE = "victims.utf8";
     private final static String MESSAGES_FILE = "mail.utf8";
+    private final static String MESSAGE_SEPARATOR = "===";
 
     //The properties to load
     private String smtpServerAddress;
@@ -32,8 +33,8 @@ public class ConfigurationManager implements  IConfigurationManager{
     //The list of availaible victims
     private ArrayList<Person> victims;
 
-    //The list of availaible mail to send
-    private ArrayList<Mail> mail;
+    //The list of availaible messages to send
+    private ArrayList<String> messages;
 
     public ConfigurationManager() {
         loadVictims(PROP_FILE);
@@ -98,12 +99,24 @@ public class ConfigurationManager implements  IConfigurationManager{
     }
 
     private void loadMessages(String filename) {
-        mail = new ArrayList<Mail>();
+        messages = new ArrayList<String>();
         FileInputStream fis = null;
         try {
             fis =  new FileInputStream(filename);
 
             //TODO: lire tous les mail qui sont séparé par un separateur, récupérer les subect, cc, etc...
+            BufferedReader is = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
+
+            String lineRead = "";
+            String message = "";
+            while( (lineRead = is.readLine()) != null) {
+                if(lineRead.equals(MESSAGE_SEPARATOR)) {
+                    messages.add(message);
+                    message = "";
+                } else {
+                    message += lineRead;
+                }
+            }
 
         } catch(IOException e) {
             e.printStackTrace();
@@ -122,8 +135,8 @@ public class ConfigurationManager implements  IConfigurationManager{
         return victims;
     }
 
-    public ArrayList<Mail> getMail() {
-        return mail;
+    public ArrayList<String> getMessages() {
+        return messages;
     }
 
 }

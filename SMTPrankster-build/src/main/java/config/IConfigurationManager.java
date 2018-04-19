@@ -12,5 +12,5 @@ public interface IConfigurationManager {
 
     public ArrayList<Person> getVictims();
 
-    public ArrayList<Mail> getMail();
+    public ArrayList<String> getMessages();
 }

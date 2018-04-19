@@ -76,4 +76,8 @@ public class Prank {
         }
         return mails;
     }
+
+    public Mail[] getMails() {
+        //TODO
+    }
 }
