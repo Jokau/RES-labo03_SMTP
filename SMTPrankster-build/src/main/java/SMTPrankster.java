@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class SMTPrankster {
     public static void main(String[] args) {
 
-        ConfigurationManager manager = new ConfigurationManager();
+        ConfigurationManager manager = ConfigurationManager.getConfigManager();
         //PrankGenerator generator = new PrankGenerator();
 
         //ArrayList<Prank> pranks = generator.getPranks();

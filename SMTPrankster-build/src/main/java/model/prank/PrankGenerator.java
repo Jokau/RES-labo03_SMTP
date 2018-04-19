@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class PrankGenerator {
 
     public PrankGenerator() {
+
         //TODO get number of groups
         //TODO create the exact number of groups
         //TODO put Person in groups (at random?)
