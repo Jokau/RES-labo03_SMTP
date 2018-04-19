@@ -31,7 +31,7 @@ public class Group {
     public Group(@NotNull Person sender,@NotNull List<Person> receivers) throws NotEnoughVictimsException {
         if (receivers.size() < MIN_NB_OF_VICTIMS - 1) {
             throw new NotEnoughVictimsException("Each Group should contain at least "
-                    + MIN_NB_OF_VICTIMS + " found : " +  receivers.size());
+                    + MIN_NB_OF_VICTIMS + " victims, found : " +  receivers.size());
         }
         this.sender = sender;
         this.receivers.addAll(receivers);

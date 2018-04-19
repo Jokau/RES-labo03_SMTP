@@ -53,3 +53,4 @@ fabric.properties
 # extra
 *.iml
 .idea
+*.class
