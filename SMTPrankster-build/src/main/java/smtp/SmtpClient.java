@@ -76,9 +76,9 @@ public class SmtpClient implements ISmtpClient {
 
     public void close() {
 
-        //TODO: send quit?
-
         if(writer != null){
+            writer.println("QUIT\r\n");
+            writer.flush();
             writer.close();
         }
         if(reader != null){

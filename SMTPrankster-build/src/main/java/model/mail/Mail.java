@@ -56,8 +56,6 @@ public class Mail {
         strBuilder.append("To: ");
         strBuilder.append(receiver.getEmailAddress() + "\n");
 
-        //TODO CC if defined in properties
-
         // subject
         strBuilder.append(message);
         content = strBuilder.toString();

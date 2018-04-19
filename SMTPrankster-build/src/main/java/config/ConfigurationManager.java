@@ -126,7 +126,6 @@ public class ConfigurationManager implements  IConfigurationManager{
         try {
             fis =  new FileInputStream(filename);
 
-            //TODO: lire tous les mail qui sont séparé par un separateur, récupérer les subect, cc, etc...
             BufferedReader is = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
 
             String lineRead = "";

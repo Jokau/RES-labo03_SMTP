@@ -29,9 +29,6 @@ public class SMTPrankster {
                     client.sendMail(mail);
                 }
             }
-            //Mail m = new Mail(new Person("sender@sender.com"), new Person("victim@victim.com"), "mail message");
-            //client.sendMail(m);
-
             client.close();
 
         } catch(IOException e) {
