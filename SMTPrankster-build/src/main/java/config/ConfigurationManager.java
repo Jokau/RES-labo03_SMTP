@@ -1,18 +1,17 @@
-/**
- * Loads all the properties, availaible victims' e-mail address and availaible mail from configurations files.
- *
- * @author Joël Kaufmann (Jokau), Loïc Schürch (loic-schurch)
- */
-
 package config;
 
-import model.mail.Mail;
 import model.mail.Person;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Properties;
 
+/**
+ * Loads all the properties, available victims' e-mail address and available mail
+ * from configurations files.
+ *
+ * @author Joël Kaufmann (Jokau), Loïc Schürch (loic-schurch)
+ */
 public class ConfigurationManager implements  IConfigurationManager{
 
     private final static String PROP_FILE = ".\\config\\config.properties";
@@ -31,14 +30,14 @@ public class ConfigurationManager implements  IConfigurationManager{
     private int smtpPortNumber;
     private int numberOfGroups;
 
-    //The list of availaible victims
+    //The list of available victims
     private ArrayList<Person> victims;
 
-    //The list of availaible messages to send
+    //The list of available messages to send
     private ArrayList<String> messages;
 
     /**
-     * Get the ConfigurationMAnager instance of the program
+     * Get the ConfigurationManager instance of the program
      * @return the unique ConfigurationManager
      */
     public static ConfigurationManager getConfigManager() {
@@ -48,6 +47,9 @@ public class ConfigurationManager implements  IConfigurationManager{
         return configManager;
     }
 
+    /**
+     * Private Constructor of the Singleton instance.
+     */
     private ConfigurationManager() {
         loadVictims(VICTIMS_FILE);
         loadMessages(MESSAGES_FILE);
@@ -96,7 +98,7 @@ public class ConfigurationManager implements  IConfigurationManager{
             BufferedReader is = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
 
             String victimRead;
-            while( (victimRead = is.readLine()) != null) {
+            while((victimRead = is.readLine()) != null) {
                 victims.add(new Person(victimRead));
             }
             is.close();
@@ -127,12 +129,13 @@ public class ConfigurationManager implements  IConfigurationManager{
 
             String lineRead = "";
             StringBuilder message = new StringBuilder();
-            while( (lineRead = is.readLine()) != null) {
+            while((lineRead = is.readLine()) != null) {
                 if(lineRead.equals(MESSAGE_SEPARATOR)) {
-                    message.delete(message.length()-2, message.length());
+                    message.delete(message.length() - 2, message.length());
                     messages.add(message.toString());
                     message = new StringBuilder();
                 } else {
+                    // recreate newline char structure
                     message.append(lineRead + "\r\n");
                 }
             }

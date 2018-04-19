@@ -5,6 +5,10 @@ import model.mail.Mail;
 import java.io.*;
 import java.net.Socket;
 
+/**
+ * A client that communicates with a SMTP server
+ * to send e-mails over.
+ */
 public class SmtpClient implements ISmtpClient {
 
     Socket clientSocket;
@@ -15,9 +19,10 @@ public class SmtpClient implements ISmtpClient {
      * Create a connection with the smtp server.
      * Create the input and outputstream of this connection
      * Start a session by sending 'EHLO local'
-     * @param address
-     * @param port
-     * @throws IOException
+     *
+     * @param address address of the SMTP server
+     * @param port  SMTP server port
+     * @throws IOException when connection errors occur
      */
     public SmtpClient(String address, int port) throws IOException {
 
@@ -43,7 +48,7 @@ public class SmtpClient implements ISmtpClient {
      */
     public void sendMail(Mail mail) throws IOException{
 
-        String smtpFrom = "MAIL FROM: " + "prankster@prank.com";
+        String smtpFrom = "MAIL FROM: " + mail.getSender();
         String smtpTo = "RCPT TO: " + mail.getReceiver().getEmailAddress();
         String smtpData = "DATA";
         String data = mail.getContent();

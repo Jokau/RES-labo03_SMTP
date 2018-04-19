@@ -5,7 +5,6 @@ import model.mail.Mail;
 import model.mail.Person;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ import java.util.List;
  */
 public class Prank {
     private Person sender;      // Sender
-    private List<Person> receivers = new LinkedList<Person>();  // receivers
+    private List<Person> receivers = new ArrayList<Person>();  // receivers
     private String message;     // content of the message to send
     private List<Mail> mails;   // generated mails for each receuver
 
@@ -32,21 +31,6 @@ public class Prank {
         this.message = message;
         this.sender = sender;
         this.receivers.addAll(receivers);
-        mails = createMails();
-    }
-
-    /**
-     * Prank constructor.
-     * @param sender sender of the prank
-     * @param message text to send
-     * @param receivers receivers of the prank
-     */
-    public Prank(@NotNull Person sender, @NotNull String message, @NotNull Person... receivers) {
-        this.message = message;
-        this.sender = sender;
-        for (Person person: receivers) {
-            this.receivers.add(person);
-        }
         mails = createMails();
     }
 

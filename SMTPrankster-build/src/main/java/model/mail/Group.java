@@ -36,7 +36,7 @@ public class Group {
         this.sender = sender;
         this.receivers.addAll(receivers);
     }
-    
+
     /**
      * Getter of the sender.
      * @return the sender

@@ -9,16 +9,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class that generates Pranks to Groups
+ * Class that generates Pranks out of a Group and a message
  *
  * @author Joël Kaufmann (Jokau), Loïc Schürch (loic-schurch)
  */
 public class PrankGenerator {
-    private ConfigurationManager confManager;
-    private ArrayList<Group> groups;
-    private ArrayList<Prank> pranks;
+    private ConfigurationManager confManager;   // config file reader
+    private ArrayList<Group> groups;            // groups formed for a prank
+    private ArrayList<Prank> pranks;            // pranks generated
 
 
+    /**
+     * Constructor of the PrankGenerator
+     * Pranks are generated at its construction.
+     *
+     * @throws NotEnoughVictimsException
+     *          when a group created has not enough victims in it
+     */
     public PrankGenerator() throws NotEnoughVictimsException {
         confManager = ConfigurationManager.getConfigManager();
         int nbGroups = confManager.getNumberOfGroups();
@@ -28,7 +35,8 @@ public class PrankGenerator {
 
     /**
      * Creates pranks by assigning a message to each groups
-     * @return The list of pranks
+     * Loops over the messages if there are more groups than messages
+     * @return the list of pranks
      */
     private ArrayList<Prank> assignMessageToGroups() {
         ArrayList<Prank> pranks = new ArrayList<Prank>();
@@ -40,12 +48,16 @@ public class PrankGenerator {
         return pranks;
     }
 
+    /**
+     * Getter of the generated Pranks.
+     * @return a list of the generated Pranks
+     */
     public ArrayList<Prank> getPranks() {
         return pranks;
     }
 
     /**
-     * Creates the Pranks' groups
+     * Creates the Pranks' groups.
      * @param nbGroups number of groups set
      * @return a list of all groups
      */
@@ -70,7 +82,7 @@ public class PrankGenerator {
             groupVictims[i].remove(0);
             // remaining people are the receivers
 
-            //create groupe
+            //create group and add it to the list
             groups.add(new Group(sender, groupVictims[i]));
         }
         return groups;
