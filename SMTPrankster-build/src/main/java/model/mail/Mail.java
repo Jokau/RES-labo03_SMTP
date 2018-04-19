@@ -2,6 +2,9 @@ package model.mail;
 
 import com.sun.istack.internal.NotNull;
 
+import java.util.Base64;
+import java.util.Scanner;
+
 /**
  * Mail Model
  *
@@ -59,12 +62,26 @@ public class Mail {
         StringBuilder strBuilder = new StringBuilder();
         // from
         strBuilder.append("From: ");
-        strBuilder.append(sender.getEmailAddress() + "\n");
+        strBuilder.append(sender.getEmailAddress() + "\r\n" + "Content-Type: text/plain; charset=utf-8" + "\r\n");
         // to
         strBuilder.append("To: ");
-        strBuilder.append(receiver.getEmailAddress() + "\n");
+        strBuilder.append(receiver.getEmailAddress() + "\r\n");
         // subject and body
-        strBuilder.append(message);
+
+        Scanner scanner = new Scanner(message);
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if(line.contains("Subject: ")) {
+                line = "Subject: =?utf-8?B?" + Base64.getEncoder().encodeToString(
+                        line.replace("Subject: ", "").getBytes()) + "?=";
+            }
+            System.out.println(line);
+            strBuilder.append(line);
+            if(scanner.hasNextLine()) {
+                strBuilder.append("\r\n");
+            }
+        }
+        scanner.close();
         content = strBuilder.toString();
     }
 }
