@@ -23,39 +23,22 @@ public class Group {
     private Person sender;                                      // Person that is the sender of the prank
     private List<Person> receivers = new ArrayList<Person>();   // List of all receivers
 
-
     /**
      * Constructor of a Group.
      * @param sender the Person whose e-mail address is used as sender
      * @param receivers the Persons whose e-mail addresses are used as receivers
      */
     public Group(@NotNull Person sender,@NotNull List<Person> receivers) throws NotEnoughVictimsException {
-        if (receivers.size() < MIN_NB_OF_VICTIMS-1) {
+        if (receivers.size() < MIN_NB_OF_VICTIMS - 1) {
             throw new NotEnoughVictimsException("Each Group should contain at least "
                     + MIN_NB_OF_VICTIMS + " found : " +  receivers.size());
         }
         this.sender = sender;
         this.receivers.addAll(receivers);
     }
-
+    
     /**
-     * Constructor of a Group.
-     * @param sender the Person whose e-mail address is used as sender
-     * @param receivers the Persons whose e-mail addresses are used as receivers
-     */
-    public Group(@NotNull Person sender,@NotNull Person... receivers) throws NotEnoughVictimsException {
-        if (receivers.length < MIN_NB_OF_VICTIMS-1) {
-            throw new NotEnoughVictimsException("Each Group should contain at least "
-                    + MIN_NB_OF_VICTIMS + " found : " +  receivers.length);
-        }
-        this.sender = sender;
-        for (Person receiver : receivers) {
-            this.receivers.add(receiver);
-        }
-    }
-
-    /**
-     * Getter of sender.
+     * Getter of the sender.
      * @return the sender
      */
     public Person getSender() {
