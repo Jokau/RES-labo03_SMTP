@@ -139,6 +139,8 @@ public class ConfigurationManager implements  IConfigurationManager{
                     message.append(lineRead + "\r\n");
                 }
             }
+            message.delete(message.length() - 2, message.length());
+            messages.add(message.toString());
 
         } catch(IOException e) {
             e.printStackTrace();
