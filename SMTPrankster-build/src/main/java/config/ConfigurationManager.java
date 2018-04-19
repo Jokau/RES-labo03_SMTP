@@ -24,6 +24,9 @@ public class ConfigurationManager implements  IConfigurationManager{
     private final static String MESSAGES_FILE = ".\\config\\messages.utf8";
     private final static String MESSAGE_SEPARATOR = "===";
 
+    // singleton instance
+    private static ConfigurationManager configManager;
+
     //The properties to load
     private String smtpServerAddress;
     private int smtpPortNumber;
@@ -36,7 +39,18 @@ public class ConfigurationManager implements  IConfigurationManager{
     //The list of availaible messages to send
     private ArrayList<String> messages;
 
-    public ConfigurationManager() {
+    /**
+     * Get the ConfigurationMAnager instance of the program
+     * @return the unique ConfigurationManager
+     */
+    public static ConfigurationManager getConfigManager() {
+        if (configManager == null) {
+            configManager = new ConfigurationManager();
+        }
+        return configManager;
+    }
+
+    private ConfigurationManager() {
         loadVictims(VICTIMS_FILE);
         loadMessages(MESSAGES_FILE);
         loadProperties(PROP_FILE);
