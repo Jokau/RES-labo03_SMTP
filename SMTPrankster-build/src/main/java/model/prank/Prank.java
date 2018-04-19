@@ -20,6 +20,7 @@ public class Prank {
     private Person sender;      // Sender
     private List<Person> receivers = new LinkedList<Person>();  // receivers
     private String message;     // content of the message to send
+    private List<Mail> mails;   // generated mails for each receuver
 
     /**
      * Prank constructor.
@@ -31,6 +32,7 @@ public class Prank {
         this.message = message;
         this.sender = sender;
         this.receivers.addAll(receivers);
+        mails = createMails();
     }
 
     /**
@@ -45,6 +47,7 @@ public class Prank {
         for (Person person: receivers) {
             this.receivers.add(person);
         }
+        mails = createMails();
     }
 
     /**
@@ -64,20 +67,24 @@ public class Prank {
     }
 
     /**
+     * Get all mails generated for the Prank
+     * @return a list of the Prank's mails
+     */
+    public List<Mail> getMails() {
+        return mails;
+    }
+
+    /**
      * Create a mail for each receiver, as the Prank is addressed one by one.
      * The messages created are ready to be sent.
      *
      * @return a list of Mails ready to be sent
      */
-    public List<Mail> createMessages() {
+    public List<Mail> createMails() {
         ArrayList<Mail> mails = new ArrayList<Mail>();
         for (Person receiver : receivers) {
             mails.add(new Mail(sender, receiver, message));
         }
         return mails;
-    }
-
-    public Mail[] getMails() {
-        //TODO
     }
 }
