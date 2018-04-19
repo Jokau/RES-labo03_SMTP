@@ -1,5 +1,8 @@
 package model.mail;
 
+import com.sun.istack.internal.NotNull;
+import exception.NotEnoughVictimsException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +18,8 @@ import java.util.List;
  */
 public class Group {
 
+    public static int MIN_NB_OF_VICTIMS = 3;
+
     private Person sender;                                      // Person that is the sender of the prank
     private List<Person> receivers = new ArrayList<Person>();   // List of all receivers
 
@@ -24,7 +29,11 @@ public class Group {
      * @param sender the Person whose e-mail address is used as sender
      * @param receivers the Persons whose e-mail addresses are used as receivers
      */
-    public Group(Person sender, List<Person> receivers) {
+    public Group(@NotNull Person sender,@NotNull List<Person> receivers) throws NotEnoughVictimsException {
+        if (receivers.size() < MIN_NB_OF_VICTIMS) {
+            throw new NotEnoughVictimsException("Each Group should contain at least "
+                    + MIN_NB_OF_VICTIMS + " found : " +  receivers.size());
+        }
         this.sender = sender;
         this.receivers.addAll(receivers);
     }
@@ -34,7 +43,11 @@ public class Group {
      * @param sender the Person whose e-mail address is used as sender
      * @param receivers the Persons whose e-mail addresses are used as receivers
      */
-    public Group(Person sender, Person... receivers) {
+    public Group(@NotNull Person sender,@NotNull Person... receivers) throws NotEnoughVictimsException {
+        if (receivers.length < MIN_NB_OF_VICTIMS) {
+            throw new NotEnoughVictimsException("Each Group should contain at least "
+                    + MIN_NB_OF_VICTIMS + " found : " +  receivers.length);
+        }
         this.sender = sender;
         for (Person receiver : receivers) {
             this.receivers.add(receiver);
