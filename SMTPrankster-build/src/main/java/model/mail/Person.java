@@ -17,9 +17,9 @@ public class Person {
     private String emailAddress;    //e-mail address
 
     public Person(@NotNull String emailAddress) throws IllegalArgumentException {
-        String pattern1 = "\\w+@\\w+\\.\\w+";
-        String pattern2 = "\\w+\\.\\w+@\\w+\\.\\w+";
-        if (emailAddress.matches(pattern1) || emailAddress.matches(pattern2)) {
+        String pattern = "\\S+@\\S*\\.\\w+";
+        emailAddress.matches(pattern);
+        if (emailAddress.matches(pattern)) {
             this.emailAddress = emailAddress;
         } else {
             throw  new IllegalArgumentException("valid address required");
