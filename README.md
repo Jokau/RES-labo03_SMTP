@@ -13,9 +13,12 @@ In both cases, make sure to have a 'config' folder with the required files, more
 
 ### Setting up a mock SMTP server (with Docker)
 The project, as is, is configured to work with a [MockMock server by Tweakers](https://github.com/tweakers-dev/MockMock) using [Docker](https://www.docker.com/what-docker).
+
 The MockMock jar and Dockerfile are stored in 'SMTPrankster-build/docker-mock-server' folder, to run it go to the folder and run in Docker terminal :
-***docker build -t mockmock-serv .***
-***docker run -p 2525:2525 -p 8282:8282 mockmock-serv***
+```
+docker build -t mockmock-serv .
+docker run -p 2525:2525 -p 8282:8282 mockmock-serv
+```
 Now that the server is up, you can run the Java project.
 MockMock provides an http interface so that you can see the result. 
 You can access it by simpy browsing to 192.168.99.100:8282, where 192.168.99.100 is the docker ip address.
