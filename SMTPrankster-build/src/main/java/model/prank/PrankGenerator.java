@@ -19,5 +19,6 @@ public class PrankGenerator {
 
     public ArrayList<Prank> getPranks() {
         //TODO
+        return null;
     }
 }

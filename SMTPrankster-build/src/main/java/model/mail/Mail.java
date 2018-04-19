@@ -37,6 +37,14 @@ public class Mail {
     }
 
     /**
+     *  Getter of the receiver
+     * @return the Mail's receiver
+     */
+    public Person getReceiver() {
+        return receiver;
+    }
+
+    /**
      * Generate SMTP DATA header
      */
     private void generateHeader(String message) {

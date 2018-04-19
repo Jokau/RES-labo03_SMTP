@@ -15,13 +15,13 @@ import java.util.Properties;
 
 public class ConfigurationManager implements  IConfigurationManager{
 
-    private final static String PROP_FILE = "config.properties";
+    private final static String PROP_FILE = ".\\config\\config.properties";
     private final static String PROP_SERVER_ADDRESS = "smtpServerAddress";
     private final static String PROP_PORT_NUMBER = "smtpPortNumber";
     private final static String PROP_NB_GROUPS = "numberOfGroups";
     private final static String PROP_MIN_GROUP_SIZE = "minimumGroupSize";
-    private final static String VICTIMS_FILE = "victims.utf8";
-    private final static String MESSAGES_FILE = "mail.utf8";
+    private final static String VICTIMS_FILE = ".\\config\\victims.utf8";
+    private final static String MESSAGES_FILE = ".\\config\\messages.utf8";
     private final static String MESSAGE_SEPARATOR = "===";
 
     //The properties to load
@@ -37,9 +37,16 @@ public class ConfigurationManager implements  IConfigurationManager{
     private ArrayList<String> messages;
 
     public ConfigurationManager() {
-        loadVictims(PROP_FILE);
-        loadMessages(VICTIMS_FILE);
-        loadProperties(MESSAGES_FILE);
+        loadVictims(VICTIMS_FILE);
+        loadMessages(MESSAGES_FILE);
+        loadProperties(PROP_FILE);
+    }
+
+    public String getSmtpServerAddress() {
+        return smtpServerAddress;
+    }
+    public int getSmtpPortNumber() {
+        return smtpPortNumber;
     }
 
     /**
