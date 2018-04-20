@@ -8,8 +8,7 @@ Your are not allowed to use/copy/modify this project for malicious purpose, such
 SMTPrankster is built using Java (JDK 10) and to run it you need a Java runtime environment (tested on JRE 8 & 10). It was developped and tested on Windows 10.
 
 ## Installation / setup
-You can either clone the repo and build it or use the .jar file.
-In both cases, make sure to have a 'config' folder with the required files, more details below.
+Build the project on your machine. Make sure to have the 'config' folder with the required files, more details below.
 
 ### Setting up a mock SMTP server (with Docker)
 The project, as is, is configured to work with a [MockMock server by Tweakers](https://github.com/tweakers-dev/MockMock) using [Docker](https://www.docker.com/what-docker).
